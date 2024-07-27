@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Authenticate extends StatefulWidget {
-  const Authenticate({super.key});
-
-  @override
-  State<Authenticate> createState() => _AuthenticateState();
+enum AuthMode {
+  login,
+  register,
 }
 
-class _AuthenticateState extends State<Authenticate> {
+class AuthenticationPage extends StatefulWidget {
+  const AuthenticationPage({super.key});
+
+  @override
+  State<AuthenticationPage> createState() => _AuthenticationPageState();
+}
+
+class _AuthenticationPageState extends State<AuthenticationPage> {
+  AuthMode _authMode = AuthMode.login;
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
