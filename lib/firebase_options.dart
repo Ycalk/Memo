@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
     storageBucket: 'memomind-7b0a4.appspot.com',
+    iosClientId: '767054581067-b3s5fmoljv4qltu6qftte7kr9nlijsus.apps.googleusercontent.com',
     iosBundleId: 'com.example.memoMind',
   );
 
@@ -66,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
     storageBucket: 'memomind-7b0a4.appspot.com',
+    iosClientId: '767054581067-b3s5fmoljv4qltu6qftte7kr9nlijsus.apps.googleusercontent.com',
     iosBundleId: 'com.example.memoMind',
   );
 
@@ -77,4 +79,5 @@ class DefaultFirebaseOptions {
     authDomain: 'memomind-7b0a4.firebaseapp.com',
     storageBucket: 'memomind-7b0a4.appspot.com',
   );
+
 }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum AuthMode {
-  login,
-  register,
-}
+import 'package:memo_mind/services/auth/auth_service.dart';
 
 class AuthenticationPage extends StatefulWidget {
   const AuthenticationPage({super.key});
@@ -13,10 +9,16 @@ class AuthenticationPage extends StatefulWidget {
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
-  AuthMode _authMode = AuthMode.login;
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: SafeArea(
+        child: ElevatedButton(
+          child: const Text('Continue with Google'),
+          onPressed: () async => AuthService().signInWithGoogle()
+        )
+      ),
+    );
   }
 }

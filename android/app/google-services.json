@@ -12,7 +12,20 @@
           "package_name": "com.example.memo_mind"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "767054581067-qkcu8bo2nggfd33i539rpgq017k1oj3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.memo_mind",
+            "certificate_hash": "843d63b7bdab6be73c4382e4513012e3619df841"
+          }
+        },
+        {
+          "client_id": "767054581067-fg7op6b73uekmrgdvp11hiipf1cqqmmv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBu1Zv6mrY85VtpEWjmyG5PrWGv-eT9uU8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767054581067-fg7op6b73uekmrgdvp11hiipf1cqqmmv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "767054581067-b3s5fmoljv4qltu6qftte7kr9nlijsus.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.memoMind"
+              }
+            }
+          ]
         }
       }
     }
