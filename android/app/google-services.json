@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767054581067",
+    "project_id": "memomind-7b0a4",
+    "storage_bucket": "memomind-7b0a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767054581067:android:d64d356adb8c2ea8b0acce",
+        "android_client_info": {
+          "package_name": "com.example.memo_mind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu1Zv6mrY85VtpEWjmyG5PrWGv-eT9uU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
