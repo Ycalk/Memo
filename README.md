@@ -1,4 +1,4 @@
-# memo_mind
+# MemoMind
 
 A new Flutter project.
 
