@@ -16,6 +16,51 @@ class AuthenticationPage extends StatefulWidget {
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
+  bool _isLoging = false;
+
+  Widget getButtons(){
+    if (_isLoging) {
+      return const CircularProgressIndicator(color: AppColors.description,);
+    }
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ElevatedButton(
+          child: const Padding(
+            padding: EdgeInsets.all(AppSpacings.l),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Iconify(Uil.signin, size: 30, color: AppColors.description,),
+                SizedBox(width: 15),
+                Text('Sign in with Google',)
+              ],
+            ),
+          ),
+          onPressed: () {
+            setState(() {
+              _isLoging = true;
+            });
+            AuthService().signInWithGoogle();
+          }
+        ),
+        const SizedBox(height: AppSpacings.l),
+        TextButton(
+          child: const Text('Continue as guest', 
+            style: TextStyle(
+              color: AppColors.description,
+              fontSize: 16,)
+          ),
+          onPressed: () {
+            setState(() {
+              _isLoging = true;
+            });
+            AuthService().signInAnon();
+          },
+        )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +76,11 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 color: AppColors.description,
               ),
               const SizedBox(height: 50),
-              ElevatedButton(
-                child: const Padding(
-                  padding: EdgeInsets.all(AppSpacings.l),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Iconify(Uil.signin, size: 30, color: AppColors.description,),
-                      SizedBox(width: 15),
-                      Text('Sign in with Google',)
-                    ],
-                  ),
-                ),
-                onPressed: () async => AuthService().signInWithGoogle(),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: getButtons(),
               ),
-              const SizedBox(height: 10),
-              TextButton(
-                child: const Text('Continue as guest', 
-                  style: TextStyle(
-                    color: AppColors.description,
-                    fontSize: 16,)
-                ),
-                onPressed: () async => AuthService().signInAnon(),
-              )
+              
             ],
           ),
         )

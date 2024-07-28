@@ -24,6 +24,10 @@ dependencies:
   google_sign_in: ^6.2.1
   ionicons: ^0.2.2
   iconify_flutter: ^0.0.5
+  window_to_front: ^0.0.3
+  url_launcher: ^6.1.7
+  oauth2: ^2.0.1
+  build_runner: ^2.4.11
 
 dev_dependencies:
   flutter_test:
