@@ -23,6 +23,7 @@ dependencies:
   cloud_firestore: ^5.1.0
   google_sign_in: ^6.2.1
   ionicons: ^0.2.2
+  iconify_flutter: ^0.0.5
 
 dev_dependencies:
   flutter_test:
