@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:memo_mind/config/secret.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:http/http.dart' as http;
 import 'package:window_to_front/window_to_front.dart';
@@ -10,6 +11,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   
+  String get uid => FirebaseAuth.instance.currentUser!.uid;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<User?> signInAnon() => _auth.signInAnonymously().then((value) => value.user);
@@ -31,7 +34,8 @@ class AuthService {
         idToken: googleAuth?.idToken,
       );
     }
-    return await _auth.signInWithCredential(credential).then((value) => value.user);
+    final userCredential = await _auth.signInWithCredential(credential);
+    return userCredential.user;
   }
 
   Future<void> signOut() async => await _auth.signOut();
@@ -40,8 +44,6 @@ class AuthService {
 
 
 class AuthManager{
-  static const String googleClientId = '767054581067-fg7op6b73uekmrgdvp11hiipf1cqqmmv.apps.googleusercontent.com';
-  static const String authClientSecret = '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';
   static const String googleAuthApi= "https://accounts.google.com/o/oauth2/v2/auth";
   static const String googleTokenApi= "https://oauth2.googleapis.com/token";
   static const String redirectUrl= 'http://localhost:';
@@ -49,14 +51,14 @@ class AuthManager{
 
   Future<oauth2.Client> _getOauthClient(Uri redirectUrl) async {
     var grant = oauth2.AuthorizationCodeGrant(
-      googleClientId,
+      SecretData.googleClientId,
       Uri.parse(googleAuthApi),
       Uri.parse(googleTokenApi),
       httpClient: _JsonAcceptingHttpClient(), 
-      secret: authClientSecret
+      secret: SecretData.authClientSecret
     );
 
-    var authorizationUrl = grant.getAuthorizationUrl(redirectUrl, scopes: ['email']);
+    var authorizationUrl = grant.getAuthorizationUrl(redirectUrl, scopes: ['email', 'profile', 'openid']);
     await _redirect(authorizationUrl);
     var responseQueryParameters = await _listen();
     var client = await grant.handleAuthorizationResponse(responseQueryParameters);
@@ -78,7 +80,7 @@ class AuthManager{
 
     request.response.statusCode = 200;
     request.response.headers.set('content-type', 'text/plain');
-
+    request.response.writeln("You can close this tab");
     await request.response.close();
     await redirectServer!.close();
     redirectServer = null;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memo_mind/components/note.dart';
+import 'package:memo_mind/domain/note.dart';
 
 
 class NoteProvider extends ChangeNotifier {

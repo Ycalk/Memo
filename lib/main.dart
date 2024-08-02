@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:memo_mind/common/constants.dart';
-import 'package:memo_mind/common/provider.dart';
-import 'package:memo_mind/common/theme/theme.dart';
-import 'package:memo_mind/firebase_options.dart';
+import 'package:memo_mind/config/constants.dart';
+import 'package:memo_mind/domain/provider.dart';
+import 'package:memo_mind/config/theme/theme.dart';
+import 'package:memo_mind/services/firebase_options.dart';
 import 'package:memo_mind/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
 
