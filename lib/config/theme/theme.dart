@@ -5,10 +5,13 @@ import 'colors.dart';
 
 class AppTheme {
   static final ThemeData dark = ThemeData(
+    scrollbarTheme: ScrollbarThemeData(
+      thumbVisibility: WidgetStateProperty.all(false),
+    ),
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.tertiary,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.white,
+      backgroundColor: Colors.white,
       centerTitle: false,
       elevation: 0,
       titleTextStyle: GoogleFonts.montserrat(

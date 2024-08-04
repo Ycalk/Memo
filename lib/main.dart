@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:memo_mind/config/constants.dart';
@@ -15,6 +17,17 @@ void main() async {
   runApp(const App());
 }
 
+class NoThumbScrollBehavior extends ScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.trackpad,
+      };
+}
+
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -28,6 +41,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.dark,
         title: StringConstants.projectName,
+        scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
         home: const AuthGate(),
       ),
     );

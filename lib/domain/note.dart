@@ -8,19 +8,20 @@ class Note {
 
   set title(String title) {
     _title = title;
-    storage.updateNote(this);
+    storage?.updateNote(this);
   }
   set content(String content) {
     _content = content;
-    storage.updateNote(this);
+    storage?.updateNote(this);
   }
   set color(Color color){
     _color = color;
-    storage.updateNote(this);
+    storage?.updateNote(this);
   }
   
+  String get date => "${created.day}.${created.month}.${created.year}";
   final DateTime created;
-  final DataBase storage;
+  final DataBase? storage;
   late final String id;
 
   String _title;
@@ -59,9 +60,9 @@ class Note {
     _title = map['title'], _content = map['content'], _color = Color(map['color']), created = DateTime.parse(map['created']);
 
 
-  Note({String title = "", String content = "", Color color = Colors.white, required this.storage}) : 
+  Note({String title = "", String content = "", Color color = Colors.white, this.storage}) : 
     _title = title, _content = content, _color = color, created = DateTime.now(){
-    storage.addNote(this).then((v) => id = v);
+    storage?.addNote(this).then((v) => id = v);
   }
 }
 
