@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memo_mind/config/theme/colors.dart';
 import 'package:memo_mind/config/theme/spacing.dart';
 import 'package:memo_mind/domain/note.dart';
 import 'package:memo_mind/presentation/components/home_app_bar.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double _scrollOffset = 0.0;
+
   final notes = List.generate(
                 100,
                 (index) => NoteCard(note: Note(
@@ -21,17 +22,17 @@ class _HomePageState extends State<HomePage> {
                 )
               ),
             );
+
+  void pushNoteCreationScreen(){
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          NotificationListener<ScrollNotification>(
-            onNotification: (notification) {
-              Future.delayed(Duration.zero, () => setState(() => _scrollOffset = notification.metrics.pixels));
-              return true;
-            },
-            child: MasonryListViewGrid(
+          MasonryListViewGrid(
               key: ValueKey(notes),
               column: 2,
               crossAxisGap: AppSpacings.l,
@@ -39,10 +40,21 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: AppSpacings.xl),
               children: notes
             ),
-          ),
-          HomeAppBar(scrollOffset: _scrollOffset,)
+          const HomeAppBar()
         ],
-      )
+      ),
+      floatingActionButton: Container(
+        width: AppSpacings.xxl * 2,
+        height: AppSpacings.xxl * 2,
+        child: FittedBox(
+          child: FloatingActionButton(
+            shape: CircleBorder(),
+              backgroundColor: AppColors.primary,
+              onPressed: pushNoteCreationScreen,
+              child: const Icon(Icons.add, color: Colors.white, size: 25),
+          ),
+        ),
+      ),
     );
   }
 }

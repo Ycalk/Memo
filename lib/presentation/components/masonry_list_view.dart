@@ -55,12 +55,12 @@ class _MasonryListViewGridState extends State<MasonryListViewGrid> {
   
     _scrollControllers = List.generate(
       widget.column,
-      (_) => _controllers.addAndGet(),
+      (_) => _controllers.addAndGet()
     );
+
     _scrollCallbackFunction = throttle(() {
       setSizedBoxHeights();
     }, 500);
-
     //Scroll listener
     _controllers.addOffsetChangedListener(_scrollCallbackFunction);
   }
