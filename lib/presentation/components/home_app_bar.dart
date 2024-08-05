@@ -25,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: const EdgeInsets.only(top: AppSpacings.xl, left: AppSpacings.l),
+        padding: const EdgeInsets.only(top: AppSpacings.xl, left: AppSpacings.xl),
         child: GestureDetector(
           onTap: AuthService().signOut,
           child: getAvatar(),

@@ -8,7 +8,6 @@ import 'package:memo_mind/config/theme/theme.dart';
 import 'package:memo_mind/services/firebase_options.dart';
 import 'package:memo_mind/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
