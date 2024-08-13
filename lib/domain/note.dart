@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:memo_mind/services/data/data_base.dart';
 
 class Note {
+  static const int maxTitleLength = 50;
+
   String get title => _title;
   String get content => _content;
   Color get color => _color;

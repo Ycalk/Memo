@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  User? currentUser = FirebaseAuth.instance.currentUser;
+  User? get currentUser => FirebaseAuth.instance.currentUser;
   String get uid => FirebaseAuth.instance.currentUser!.uid;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
