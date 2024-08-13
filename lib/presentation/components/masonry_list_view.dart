@@ -5,14 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 class MasonryListViewGrid extends StatefulWidget {
-  const MasonryListViewGrid({
+  MasonryListViewGrid({
     required this.column,
-    required this.children,
+    required List<Widget> children,
     this.mainAxisGap = 8.0,
     this.crossAxisGap = 8.0,
     this.padding = const EdgeInsets.all(0),
     super.key,
-  });
+  }) : children = List.of(children) {
+    final int remainingItems = column - (children.length % column);
+    if (remainingItems < column) {
+      this.children.addAll(
+        List.generate(remainingItems, (index) => const SizedBox.shrink()),
+      );
+    }
+  }
+
 
   /// Create the fixed number of column.
   final int column;

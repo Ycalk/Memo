@@ -6,8 +6,10 @@ import 'package:memo_mind/config/theme/colors.dart';
 import 'package:memo_mind/config/theme/notes_colors.dart';
 import 'package:memo_mind/config/theme/spacing.dart';
 import 'package:memo_mind/domain/note.dart';
+import 'package:memo_mind/domain/provider.dart';
 import 'package:memo_mind/presentation/components/button_app_bar.dart';
 import 'package:memo_mind/presentation/components/choose_color.dart';
+import 'package:provider/provider.dart';
 
 class NewNotePage extends StatefulWidget {
   const NewNotePage({super.key});
@@ -26,6 +28,16 @@ class _NewNotePageState extends State<NewNotePage> {
   void initState(){
     super.initState();
     _colorCount = Random().nextInt(NotesColors.colors.length);
+  }
+
+  Note createNote(){
+    final note = Note(
+      title: _titleController.text,
+      content: _contentController.text,
+      color: NotesColors.colors[_colorCount],
+      storage: Provider.of<NoteProvider>(context, listen: false).database,
+    );
+    return note;
   }
 
   @override
@@ -86,12 +98,22 @@ class _NewNotePageState extends State<NewNotePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ButtonAppBar(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        if (_titleController.text.isEmpty && _contentController.text.isEmpty){
+                          Navigator.of(context).pop();
+                          return;
+                        }
+                        final note = createNote();
+                        Navigator.of(context).pop(note);
+                      },
                       heroTag: 'back',
                       icon: const Icon(Icons.arrow_back),
                     ),
                     ButtonAppBar(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        final note = createNote();
+                        Navigator.of(context).pop(note);
+                      },
                       heroTag: 'save',
                       icon: const Icon(Icons.save),
                       alignment: Alignment.topRight,
