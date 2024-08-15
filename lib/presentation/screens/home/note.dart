@@ -11,14 +11,16 @@ import 'package:memo_mind/presentation/components/button_app_bar.dart';
 import 'package:memo_mind/presentation/components/choose_color.dart';
 import 'package:provider/provider.dart';
 
-class NewNotePage extends StatefulWidget {
-  const NewNotePage({super.key});
+class NotePage extends StatefulWidget {
+  final Note? note;
+
+  const NotePage({super.key, this.note, });
 
   @override
-  State<NewNotePage> createState() => _NewNotePageState();
+  State<NotePage> createState() => _NotePageState();
 }
 
-class _NewNotePageState extends State<NewNotePage> {
+class _NotePageState extends State<NotePage> {
   int _colorCount = 0;
   static const double _chooseColorWidgetSize = 50;
   final TextEditingController _titleController = TextEditingController();
@@ -27,7 +29,12 @@ class _NewNotePageState extends State<NewNotePage> {
   @override
   void initState(){
     super.initState();
-    _colorCount = Random().nextInt(NotesColors.colors.length);
+    if (widget.note != null){
+      _titleController.text = widget.note!.title;
+      _contentController.text = widget.note!.content;
+    }
+    _colorCount = widget.note == null ? Random().nextInt(NotesColors.colors.length) : 
+      NotesColors.colors.indexOf(widget.note!.color);
   }
 
   Note createNote(){
@@ -38,6 +45,12 @@ class _NewNotePageState extends State<NewNotePage> {
       storage: Provider.of<NoteProvider>(context, listen: false).database,
     );
     return note;
+  }
+
+  void saveChanges(){
+    widget.note?.title = _titleController.text;
+    widget.note?.content = _contentController.text;
+    Navigator.of(context).pop(widget.note);
   }
 
   @override
@@ -99,20 +112,28 @@ class _NewNotePageState extends State<NewNotePage> {
                   children: [
                     ButtonAppBar(
                       onPressed: () {
-                        if (_titleController.text.isEmpty && _contentController.text.isEmpty){
-                          Navigator.of(context).pop();
-                          return;
+                        if (widget.note == null){
+                          if (_titleController.text.isEmpty && _contentController.text.isEmpty){
+                            Navigator.of(context).pop();
+                            return;
+                          }
+                          final note = createNote();
+                          Navigator.of(context).pop(note);
+                        } else {
+                          saveChanges();
                         }
-                        final note = createNote();
-                        Navigator.of(context).pop(note);
                       },
                       heroTag: 'back',
                       icon: const Icon(Icons.arrow_back),
                     ),
                     ButtonAppBar(
                       onPressed: () {
-                        final note = createNote();
-                        Navigator.of(context).pop(note);
+                        if (widget.note == null){
+                          final note = createNote();
+                          Navigator.of(context).pop(note);
+                        } else {
+                          saveChanges();
+                        }
                       },
                       heroTag: 'save',
                       icon: const Icon(Icons.save),

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:memo_mind/config/theme/colors.dart';
 import 'package:memo_mind/config/theme/spacing.dart';
+import 'package:memo_mind/domain/note.dart';
 import 'package:memo_mind/domain/provider.dart';
 import 'package:memo_mind/presentation/components/button_app_bar.dart';
 import 'package:memo_mind/presentation/components/note_card.dart';
-import 'package:memo_mind/presentation/screens/home/new_note.dart';
+import 'package:memo_mind/presentation/screens/home/note.dart';
 import 'package:memo_mind/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -20,15 +21,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  void pushNoteCreationScreen(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NewNotePage()));
+  void pushNoteCreationScreen({Note? note}){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotePage(note: note,)));
   }
   
   @override
   Widget build(BuildContext context) {
     final String? imageUrl = AuthService().currentUser?.photoURL;
     final notes = Provider.of<NoteProvider>(context, listen: true)
-      .notes.map((note) => NoteCard(note: note)).toList();
+      .notes.map((note) => NoteCard(
+        note: note,
+        onTap: () => pushNoteCreationScreen(note: note),
+      )).toList();
 
     notes.sort((a, b) => -(a.note.created.compareTo(b.note.created)));
 
