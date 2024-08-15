@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,11 +5,11 @@ import 'package:memo_mind/config/theme/colors.dart';
 import 'package:memo_mind/config/theme/spacing.dart';
 import 'package:memo_mind/domain/provider.dart';
 import 'package:memo_mind/presentation/components/button_app_bar.dart';
-import 'package:memo_mind/presentation/components/masonry_list_view.dart';
 import 'package:memo_mind/presentation/components/note_card.dart';
 import 'package:memo_mind/presentation/screens/home/new_note.dart';
 import 'package:memo_mind/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,6 +30,8 @@ class _HomePageState extends State<HomePage> {
     final notes = Provider.of<NoteProvider>(context, listen: true)
       .notes.map((note) => NoteCard(note: note)).toList();
 
+    notes.sort((a, b) => -(a.note.created.compareTo(b.note.created)));
+
     Widget avatarIcon() => const Icon(Icons.person, size: AppSpacings.xxl,);
     Widget getNotes(){
       if (notes.isEmpty){
@@ -43,14 +43,15 @@ class _HomePageState extends State<HomePage> {
           ),),
         );
       }
-      return MasonryListViewGrid(
-              key: ValueKey(notes),
-              column: Platform.isAndroid || Platform.isIOS ? 2 : 4,
-              crossAxisGap: AppSpacings.l,
-              mainAxisGap: AppSpacings.l,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacings.l),
-              children: notes
-            );
+      return MasonryGridView.count(
+        crossAxisCount: 4,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
+        itemCount: notes.length,
+        itemBuilder: (context, index) {
+          return notes[index];
+        },
+      );
     }
 
     
