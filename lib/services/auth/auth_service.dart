@@ -17,24 +17,30 @@ class AuthService {
 
   Future<User?> signInAnon() => _auth.signInAnonymously().then((value) => value.user);
 
-  Future<User?> signInWithGoogle() async {
-    late AuthCredential credential;
+  Future<AuthCredential> _getCredentials() async {
     if (Platform.isMacOS||Platform.isWindows||Platform.isLinux){
       final authManage = AuthManager();
       final auth = await authManage.login();
-      credential = GoogleAuthProvider.credential(
+      return GoogleAuthProvider.credential(
         accessToken: auth.accessToken,
         idToken: auth.idToken,
       );
     } else {
       final googleAccount = await GoogleSignIn().signIn();
       final googleAuth = await googleAccount?.authentication;
-      credential = GoogleAuthProvider.credential(
+      return GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
     }
-    final userCredential = await _auth.signInWithCredential(credential);
+  }
+
+  Future<void> linkGoogleAccount() async {
+    currentUser!.linkWithCredential(await _getCredentials());
+  }
+
+  Future<User?> signInWithGoogle() async {
+    final userCredential = await _auth.signInWithCredential(await _getCredentials());
     return userCredential.user;
   }
 
