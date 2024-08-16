@@ -36,6 +36,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.7.0
   popup_menu: ^2.0.0
   popup_menu_plus: ^0.0.6
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:

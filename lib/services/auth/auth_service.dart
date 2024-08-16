@@ -1,6 +1,5 @@
 
 import 'dart:io';
-
 import 'package:memo_mind/config/secret.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:http/http.dart' as http;
@@ -36,7 +35,15 @@ class AuthService {
   }
 
   Future<void> linkGoogleAccount() async {
-    currentUser!.linkWithCredential(await _getCredentials());
+    final credential = await _getCredentials();
+    try{
+      await currentUser!.linkWithCredential(credential);
+    } catch (e){
+      if (e is FirebaseAuthException && e.code.contains('credential-already-in-use')){
+        await signOut();
+        await _auth.signInWithCredential(credential);
+      }
+    }
   }
 
   Future<User?> signInWithGoogle() async {
