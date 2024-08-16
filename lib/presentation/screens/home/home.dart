@@ -14,6 +14,8 @@ import 'package:memo_mind/presentation/screens/home/note.dart';
 import 'package:memo_mind/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:popup_menu_plus/popup_menu_plus.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,7 +26,48 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Set<Note> _selected = {};
+  final GlobalKey _avatarKey = GlobalKey();
 
+  void showMenu(){
+    PopupMenu menu = PopupMenu(
+      context: context,
+      config: MenuConfig.forList(
+        borderRadius: BorderRadius.circular(AppSpacings.l),
+        backgroundColor: AppColors.primary,
+        itemWidth: 230,
+        itemHeight: 50,
+        arrowHeight: AppSpacings.m,
+        lineColor: Colors.white,
+        highlightColor: Colors.white,
+      ),
+      items: [
+        PopUpMenuItem.forList(
+            textStyle: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600
+            ),
+            title: 'Log out',
+            image: const Icon(Icons.logout, color: Colors.white, size: AppSpacings.xxl + 5)),
+        
+        if (AuthService().currentUser!.isAnonymous) 
+          PopUpMenuItem.forList(
+              textStyle: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w600
+              ),
+              title: 'Google account',
+              image: const Icon(Icons.add, color: Colors.white, size: AppSpacings.xxl + 5)),
+      ],
+      onClickMenu: (item) {
+        if (item.menuTitle == 'Log out'){
+          AuthService().signOut();
+        }
+      },
+    );
+    menu.show(widgetKey: _avatarKey);
+  }
 
   void markAsSelected(Note note){
     setState(() {
@@ -83,7 +126,7 @@ class _HomePageState extends State<HomePage> {
     
     
 
-    Widget avatarIcon() => const Icon(Icons.person, size: AppSpacings.xxl,);
+    Widget avatarIcon() => const Icon(Icons.person, size: AppSpacings.xxl, color: Colors.white);
     Widget getNotes(){
       if (notes.isEmpty){
         return Center(
@@ -115,26 +158,34 @@ class _HomePageState extends State<HomePage> {
           
           ButtonAppBar(
             alignment: Alignment.bottomLeft,
-            onPressed: AuthService().signOut,
             heroTag: 'avatar',
-            icon: (imageUrl !=null && imageUrl.isNotEmpty) ?
-              CachedNetworkImage(
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+            icon: MaterialButton(
+              shape: const CircleBorder(),
+              padding: const EdgeInsets.all(0),
+              key: _avatarKey,
+              onPressed: showMenu,
+              child: SizedBox.expand(
+                child: (imageUrl !=null && imageUrl.isNotEmpty) ?
+                  CachedNetworkImage(
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                fadeInDuration: const Duration(milliseconds: 200),
-                fadeOutDuration: const Duration(milliseconds: 100),
-                imageUrl: imageUrl,
-                placeholder: (context, url) => avatarIcon(),
-                errorWidget: (context, url, error) => avatarIcon(),
-              ) : avatarIcon()
+                    fadeInDuration: const Duration(milliseconds: 200),
+                    fadeOutDuration: const Duration(milliseconds: 100),
+                    imageUrl: imageUrl,
+                    placeholder: (context, url) => avatarIcon(),
+                    errorWidget: (context, url, error) => avatarIcon(),
+                  ) : avatarIcon(),
+              ),
+              
             ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
