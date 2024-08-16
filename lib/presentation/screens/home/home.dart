@@ -63,6 +63,8 @@ class _HomePageState extends State<HomePage> {
       onClickMenu: (item) {
         if (item.menuTitle == 'Log out'){
           AuthService().signOut();
+        } else if (item.menuTitle == 'Google account'){
+          AuthService().linkGoogleAccount();
         }
       },
     );
