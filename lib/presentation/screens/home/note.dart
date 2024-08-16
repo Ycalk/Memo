@@ -50,6 +50,7 @@ class _NotePageState extends State<NotePage> {
   void saveChanges(){
     widget.note?.title = _titleController.text;
     widget.note?.content = _contentController.text;
+    widget.note?.color = NotesColors.colors[_colorCount];
     Navigator.of(context).pop(widget.note);
   }
 
