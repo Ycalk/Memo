@@ -23,7 +23,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Set<Note> _selected = {};
+  final Set<Note> _selected = {};
+
 
   void markAsSelected(Note note){
     setState(() {
@@ -53,8 +54,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final String? imageUrl = AuthService().currentUser?.photoURL;
-    final notes = Provider.of<NoteProvider>(context, listen: true)
-      .notes.map((note) => NoteCard(
+    var counter = 0;
+    final notesInfo = Provider.of<NoteProvider>(context, listen: true).notes.toList();
+    notesInfo.sort((a, b) => -(a.created.compareTo(b.created)));
+      
+    final notes = notesInfo.map((note) {
+        final noteCard = NoteCard(
+        key: ValueKey(note.id + counter.toString()),
         selected: _selected.contains(note),
         note: note,
         onTap: () {
@@ -69,10 +75,13 @@ class _HomePageState extends State<HomePage> {
           }
         },
         onSelect: () => markAsSelected(note),
-      )
-      ).toList();
+        );
+        counter++;
+        return noteCard;
+      }).toList();
 
-    notes.sort((a, b) => -(a.note.created.compareTo(b.note.created)));
+    
+    
 
     Widget avatarIcon() => const Icon(Icons.person, size: AppSpacings.xxl,);
     Widget getNotes(){
@@ -86,17 +95,19 @@ class _HomePageState extends State<HomePage> {
         );
       }
       return MasonryGridView.count(
+        padding: const EdgeInsets.all(AppSpacings.m),
         crossAxisCount: Platform.isAndroid || Platform.isIOS ? 2 : 4,
         mainAxisSpacing: AppSpacings.m,
         crossAxisSpacing: AppSpacings.m,
         itemCount: notes.length,
         itemBuilder: (context, index) {
-          return notes[index];
+          return notes[index]
+              .animate()
+              .fadeIn(delay: 100.ms * (index), curve: Curves.easeIn)
+              .moveY(delay: 100.ms * (index), curve: Curves.easeIn);
         },
       );
     }
-
-    
     return Scaffold(
       body: Stack(
         children: [

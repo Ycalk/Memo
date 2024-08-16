@@ -27,6 +27,13 @@ class _NotePageState extends State<NotePage> {
   final TextEditingController _contentController = TextEditingController();
 
   @override
+  void dispose(){
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState(){
     super.initState();
     if (widget.note != null){
