@@ -2,9 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:memo_mind/config/theme/colors.dart';
-import 'package:memo_mind/config/theme/spacing.dart';
-import 'package:memo_mind/domain/note.dart';
+import 'package:memo/config/theme/colors.dart';
+import 'package:memo/config/theme/spacing.dart';
+import 'package:memo/domain/note.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({

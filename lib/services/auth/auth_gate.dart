@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:memo_mind/domain/provider.dart';
-import 'package:memo_mind/presentation/screens/auth/auth.dart';
-import 'package:memo_mind/presentation/screens/home/home.dart';
-import 'package:memo_mind/services/data/cloud.dart';
+import 'package:memo/domain/provider.dart';
+import 'package:memo/presentation/screens/auth/auth.dart';
+import 'package:memo/presentation/screens/home/home.dart';
+import 'package:memo/services/data/cloud.dart';
 import 'package:provider/provider.dart';
 
 class AuthGate extends StatelessWidget {

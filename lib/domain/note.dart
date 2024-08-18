@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memo_mind/services/data/data_base.dart';
+import 'package:memo/services/data/data_base.dart';
 
 class Note {
   static const int maxTitleLength = 50;

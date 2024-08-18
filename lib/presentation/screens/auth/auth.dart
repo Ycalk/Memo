@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/icons/uil.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ic.dart';
-import 'package:memo_mind/config/theme/colors.dart';
-import 'package:memo_mind/config/theme/spacing.dart';
-import 'package:memo_mind/services/auth/auth_service.dart';
+import 'package:memo/config/theme/colors.dart';
+import 'package:memo/config/theme/spacing.dart';
+import 'package:memo/services/auth/auth_service.dart';
 
 
 

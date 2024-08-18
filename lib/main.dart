@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:memo_mind/config/constants.dart';
-import 'package:memo_mind/domain/provider.dart';
-import 'package:memo_mind/config/theme/theme.dart';
-import 'package:memo_mind/services/firebase_options.dart';
-import 'package:memo_mind/services/auth/auth_gate.dart';
+import 'package:memo/config/constants.dart';
+import 'package:memo/domain/provider.dart';
+import 'package:memo/config/theme/theme.dart';
+import 'package:memo/services/firebase_options.dart';
+import 'package:memo/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:memo_mind/config/theme/colors.dart';
-import 'package:memo_mind/config/theme/spacing.dart';
+import 'package:memo/config/theme/colors.dart';
+import 'package:memo/config/theme/spacing.dart';
 
 class ButtonAppBar extends StatelessWidget {
   final String? heroTag;

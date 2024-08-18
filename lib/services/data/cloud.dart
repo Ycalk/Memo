@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:memo_mind/domain/note.dart';
-import 'package:memo_mind/services/auth/auth_service.dart';
-import 'package:memo_mind/services/data/data_base.dart';
+import 'package:memo/domain/note.dart';
+import 'package:memo/services/auth/auth_service.dart';
+import 'package:memo/services/data/data_base.dart';
 
 
 class CloudDataBase implements DataBase {

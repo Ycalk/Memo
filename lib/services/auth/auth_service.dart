@@ -1,6 +1,6 @@
 
 import 'dart:io';
-import 'package:memo_mind/config/secret.dart';
+import 'package:memo/config/secret.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:http/http.dart' as http;
 import 'package:window_to_front/window_to_front.dart';

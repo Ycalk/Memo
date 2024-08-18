@@ -1,5 +1,5 @@
-import 'package:memo_mind/domain/note.dart';
-import 'package:memo_mind/services/data/data_base.dart';
+import 'package:memo/domain/note.dart';
+import 'package:memo/services/data/data_base.dart';
 
 class LocalDataBase extends DataBase {
   

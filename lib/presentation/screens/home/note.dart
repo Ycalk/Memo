@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:memo_mind/config/theme/colors.dart';
-import 'package:memo_mind/config/theme/notes_colors.dart';
-import 'package:memo_mind/config/theme/spacing.dart';
-import 'package:memo_mind/domain/note.dart';
-import 'package:memo_mind/domain/provider.dart';
-import 'package:memo_mind/presentation/components/button_app_bar.dart';
-import 'package:memo_mind/presentation/components/choose_color.dart';
+import 'package:memo/config/theme/colors.dart';
+import 'package:memo/config/theme/notes_colors.dart';
+import 'package:memo/config/theme/spacing.dart';
+import 'package:memo/domain/note.dart';
+import 'package:memo/domain/provider.dart';
+import 'package:memo/presentation/components/button_app_bar.dart';
+import 'package:memo/presentation/components/choose_color.dart';
 import 'package:provider/provider.dart';
 
 class NotePage extends StatefulWidget {

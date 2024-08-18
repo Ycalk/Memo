@@ -1,4 +1,4 @@
-import 'package:memo_mind/domain/note.dart';
+import 'package:memo/domain/note.dart';
 
 abstract class DataBase{
 
