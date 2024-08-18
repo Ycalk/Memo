@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -43,22 +40,35 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBu1Zv6mrY85VtpEWjmyG5PrWGv-eT9uU8',
-    appId: '1:767054581067:android:d64d356adb8c2ea8b0acce',
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyApZJqspFIOnas6H1Z26UcedeQz7xq_nJ4',
+    appId: '1:767054581067:web:cc9c1e19f72832f2b0acce',
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
+    authDomain: 'memomind-7b0a4.firebaseapp.com',
+    databaseURL: 'https://memomind-7b0a4-default-rtdb.firebaseio.com',
+    storageBucket: 'memomind-7b0a4.appspot.com',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyBu1Zv6mrY85VtpEWjmyG5PrWGv-eT9uU8',
+    appId: '1:767054581067:android:7e58be5ebe7cdfa2b0acce',
+    messagingSenderId: '767054581067',
+    projectId: 'memomind-7b0a4',
+    databaseURL: 'https://memomind-7b0a4-default-rtdb.firebaseio.com',
     storageBucket: 'memomind-7b0a4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCcTzvs-IgGa7Ldhkhl0tqtb7bsZIOJ84M',
-    appId: '1:767054581067:ios:643b226cb6ecbef3b0acce',
+    appId: '1:767054581067:ios:de610fb5cf442e0eb0acce',
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
+    databaseURL: 'https://memomind-7b0a4-default-rtdb.firebaseio.com',
     storageBucket: 'memomind-7b0a4.appspot.com',
-    iosClientId: '767054581067-b3s5fmoljv4qltu6qftte7kr9nlijsus.apps.googleusercontent.com',
-    iosBundleId: 'com.example.memoMind',
+    androidClientId: '767054581067-qkcu8bo2nggfd33i539rpgq017k1oj3n.apps.googleusercontent.com',
+    iosClientId: '767054581067-n0rq2sm86da8k6u0a4851p8li0ooi3e3.apps.googleusercontent.com',
+    iosBundleId: 'com.ios.memo',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -66,18 +76,20 @@ class DefaultFirebaseOptions {
     appId: '1:767054581067:ios:643b226cb6ecbef3b0acce',
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
+    databaseURL: 'https://memomind-7b0a4-default-rtdb.firebaseio.com',
     storageBucket: 'memomind-7b0a4.appspot.com',
+    androidClientId: '767054581067-qkcu8bo2nggfd33i539rpgq017k1oj3n.apps.googleusercontent.com',
     iosClientId: '767054581067-b3s5fmoljv4qltu6qftte7kr9nlijsus.apps.googleusercontent.com',
     iosBundleId: 'com.example.memoMind',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyApZJqspFIOnas6H1Z26UcedeQz7xq_nJ4',
-    appId: '1:767054581067:web:cc9c1e19f72832f2b0acce',
+    appId: '1:767054581067:web:4c3f3693392c6ea3b0acce',
     messagingSenderId: '767054581067',
     projectId: 'memomind-7b0a4',
     authDomain: 'memomind-7b0a4.firebaseapp.com',
+    databaseURL: 'https://memomind-7b0a4-default-rtdb.firebaseio.com',
     storageBucket: 'memomind-7b0a4.appspot.com',
   );
-
 }

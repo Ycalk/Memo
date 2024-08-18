@@ -146,10 +146,19 @@ class _HomePageState extends State<HomePage> {
         crossAxisSpacing: AppSpacings.m,
         itemCount: notes.length,
         itemBuilder: (context, index) {
+          if (index < (Platform.isAndroid || Platform.isIOS ? 2 : 4) ){
+            return SafeArea(
+              child: notes[index]
+                .animate()
+                .fadeIn(delay: 50.ms * (index), curve: Curves.easeIn)
+                .moveY(delay: 50.ms * (index), curve: Curves.easeIn),
+            );
+          }
           return notes[index]
-              .animate()
-              .fadeIn(delay: 100.ms * (index), curve: Curves.easeIn)
-              .moveY(delay: 100.ms * (index), curve: Curves.easeIn);
+            .animate()
+            .fadeIn(delay: 50.ms * (index), curve: Curves.easeIn)
+            .moveY(delay: 50.ms * (index), curve: Curves.easeIn);
+          
         },
       );
     }
