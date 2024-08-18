@@ -12,7 +12,7 @@ class NotesColors {
     cyan
   ];
 
-  static final Color yellow = Colors.amberAccent;
+  static const Color yellow = Colors.amberAccent;
   static final Color blue = Colors.blue.shade200;
   static final Color green = Colors.green.shade200;
   static final Color red = Colors.redAccent.shade100;

@@ -37,12 +37,40 @@ dependencies:
   popup_menu: ^2.0.0
   popup_menu_plus: ^0.0.6
   http: ^1.2.2
+  
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^3.0.0
+  flutter_rename_app_plus3: ^1.2.3
+  flutter_launcher_icons: ^0.13.1
+  rename: ^3.0.2
+  rename_app: ^1.6.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+  macos:
+    generate: true
+    image_path: "assets/icon/icon.png"
+
+flutter_rename_app_plus3:
+  application_name: Memo
+  dart_package_name: memo
+  application_id: com.android.memo
+  bundle_id: com.ios.memo
+  ios_bundle_name: Memo
 
 flutter:
 
