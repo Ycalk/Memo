@@ -1,16 +1,21 @@
-# MemoMind
+# Memo
 
-A new Flutter project.
+Flutter notes app
 
-## Getting Started
+# About
 
-This project is a starting point for a Flutter application.
+Memo is an application that:
+- Provides the ability to synchronize data between devices
+- Has an adaptive unique design
 
-A few resources to get you started if this is your first Flutter project:
+# Technologies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter
+- Firebase
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Media
+<img src="https://github.com/user-attachments/assets/c4b96b15-6284-48a4-8abc-39f7f6a079a5" width="300">
+<img src="https://github.com/user-attachments/assets/642c368f-bb6f-462f-ba1b-53e0a34d429b" width="300">
+<img src="https://github.com/user-attachments/assets/c2c50dfb-4785-443f-b562-d381e90a1e8a" width="300">
+<img src="https://github.com/user-attachments/assets/6d6f6fcb-e0de-40fd-98a9-3fe102234828" width="300">
+
